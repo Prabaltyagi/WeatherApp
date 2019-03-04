@@ -9,4 +9,7 @@ class MyApp : Application() {
 
     }
 
+    override fun onTerminate() {
+        super.onTerminate()
+    }
 }
