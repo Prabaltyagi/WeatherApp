@@ -1,21 +1,26 @@
 package com.prabal.weatherapp.views.weather_details
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.google.android.material.snackbar.Snackbar
 import com.prabal.weatherapp.R
-
-import kotlinx.android.synthetic.main.activity_main.*
+import com.prabal.weatherapp.utils.getViewModel
+import kotlinx.android.synthetic.main.activity_weather_details.*
 
 class WeatherDetailsActivity : AppCompatActivity() {
 
+    private lateinit var binding: com.prabal.weatherapp.databinding.ActivityWeatherDetailsBinding
+    private lateinit var viewModel: WeatherViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_weather_details)
         setSupportActionBar(toolbar)
-
+        //viewModel = ViewModelProviders.of(this, ViewModelInjector(this)).get(WeatherViewModel::class.java)
+        viewModel = getViewModel()
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -37,4 +42,6 @@ class WeatherDetailsActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    fun getViewModel(): WeatherViewModel = getViewModel(WeatherViewModel::class.java)
 }
