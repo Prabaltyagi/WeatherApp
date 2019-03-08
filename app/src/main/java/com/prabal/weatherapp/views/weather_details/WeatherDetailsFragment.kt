@@ -9,10 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.prabal.weatherapp.databinding.FragmentWeatherDetailsBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -26,8 +22,8 @@ private const val ARG_PARAM2 = "param2"
 class WeatherDetailsFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
-    private lateinit var viewDataBinding: FragmentWeatherDetailsBinding
-    private lateinit var viewModel: WeatherViewModel
+    private lateinit var viewDataBinding: com.prabal.weatherapp.databinding.FragmentWeatherDetailsBinding
+    //private lateinit var viewModel: WeatherViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +37,14 @@ class WeatherDetailsFragment : Fragment() {
 
         viewDataBinding = FragmentWeatherDetailsBinding.inflate(inflater, container, false).apply {
             viewModel = (activity as WeatherDetailsActivity).getViewModel()
+
         }
+
         return viewDataBinding.root
         // Inflate the layout for this fragment
-      //  return inflater.inflate(R.layout.fragment_weather_details, container, false)
+        //  return inflater.inflate(R.layout.fragment_weather_details, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
@@ -56,7 +53,12 @@ class WeatherDetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewDataBinding.setLifecycleOwner(this.viewLifecycleOwner)
     }
-    override fun onAttach(context: Context) {
+
+    override fun onResume() {
+        super.onResume()
+        viewDataBinding.viewModel?.startLoad()
+    }
+  /*  override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
@@ -68,7 +70,9 @@ class WeatherDetailsFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
-    }
+    }*/
+
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -82,7 +86,6 @@ class WeatherDetailsFragment : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
     }
 

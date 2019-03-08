@@ -41,10 +41,9 @@ dependencies {
 
     //dagger
     //implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
-   // implementation "com.google.dagger:dagger-android-support$rootProject.daggerVersion" // if you use the support libraries
+    // implementation "com.google.dagger:dagger-android-support$rootProject.daggerVersion" // if you use the support libraries
     //kapt "com.google.dagger:dagger-android-processor$rootProject.daggerVersion"
     //kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-
 
     // dependency injection
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
@@ -57,7 +56,7 @@ dependencies {
     implementation 'javax.inject:javax.inject:1'
 
     // LiveData & ViewModel
-    implementation"android.arch.lifecycle:extensions:$archLifecycleVersion"
+    implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2Version"

@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <import type="android.view.View" />
-
+        <import type="android.text.TextUtils"/>
         <import type="androidx.core.content.ContextCompat" />
 
         <variable
-                name="viewmodel"
+                name="viewModel"
                 type="com.prabal.weatherapp.views.weather_details.WeatherViewModel" />
 
     </data>
@@ -21,19 +18,8 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:showIn="@layout/activity_weather_detail"
             tools:context=".views.weather_details.WeatherDetailsFragment"
-            android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}">
-        <!--
-        <TextView
-                android:id="@+id/filteringLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="@dimen/list_item_padding"
-                android:layout_marginRight="@dimen/list_item_padding"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:text="@{context.getString(viewmodel.currentFilteringLabel)}" />-->
+            >
+
 
 
         <TextView
@@ -57,7 +43,7 @@
                 android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/welcome"/>
         <TextView
-                android:text="@{String.valueOf(viewmodel.maxTemp)}"
+                android:text="@{String.valueOf(viewModel.maxTemp)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/maxTemp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
@@ -75,7 +61,7 @@
                 app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/max"/>
         <TextView
-                android:text="@{String.valueOf(viewmodel.minTemp)}"
+                android:text="@{String.valueOf(viewModel.minTemp)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/minTemp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
@@ -85,7 +71,7 @@
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/maxTemp"/>
         <TextView
                 android:id="@+id/city"
-                android:text="@{String.valueOf(viewmodel.cityName)}"
+                android:text="@{viewModel.cityName}"
                 android:layout_width="wrap_content"
                 android:layout_height="16dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"

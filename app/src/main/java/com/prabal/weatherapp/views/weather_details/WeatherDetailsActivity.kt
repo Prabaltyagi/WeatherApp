@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.google.android.material.snackbar.Snackbar
 import com.prabal.weatherapp.R
 import com.prabal.weatherapp.utils.getViewModel
@@ -12,14 +13,15 @@ import kotlinx.android.synthetic.main.activity_weather_detail.*
 
 class WeatherDetailsActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: WeatherViewModel
+    private lateinit var binding: com.prabal.weatherapp.databinding.ActivityWeatherDetailBinding
+    //private lateinit var viewModel: WeatherViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weather_detail)
-       // binding= DataBindingUtil.setContentView(this,R.layout.activity_weather_detail)
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_weather_detail)
+        binding.viewmodel = getViewModel()
+
         setSupportActionBar(toolbar)
-        viewModel = getViewModel()
         setupViewFragment()
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

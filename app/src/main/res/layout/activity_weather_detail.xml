@@ -6,8 +6,6 @@
 
         <import type="android.view.View" />
 
-        <import type="androidx.core.content.ContextCompat" />
-
         <variable
                 name="viewmodel"
                 type="com.prabal.weatherapp.views.weather_details.WeatherViewModel" />
@@ -37,7 +35,6 @@
                 android:id="@+id/contentFrame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

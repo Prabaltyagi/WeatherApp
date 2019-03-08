@@ -1,5 +1,6 @@
 package com.prabal.weatherapp.model.data.remote
 
+import android.util.Log
 import com.prabal.weatherapp.model.WeatherData
 import com.prabal.weatherapp.model.data.WeatherDataSource
 import com.prabal.weatherapp.network.WeatherApi
@@ -16,12 +17,13 @@ object WeatherRemoteDataSource: WeatherDataSource {
         callback: WeatherDataSource.GetWeatherDataCallback
     ) {
         //implement network call
-        var weatherReq: Call<WeatherData> =weatherApi.getDailyForecast("28.644800","77.216721",2)
+        var weatherReq: Call<WeatherData> =weatherApi.getDailyForecast(lat,long,dayCount)
 
         weatherReq.enqueue(object:Callback<WeatherData>{
             override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
 
                 response.body()?.let {
+                    Log.d("MyApp##","Resp:"+it)
                     callback.onWeatherDataLoaded(it)
                 }
             }

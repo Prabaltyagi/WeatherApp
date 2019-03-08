@@ -13,8 +13,10 @@ import javax.inject.Inject
 class WeatherViewModel(
     private val weatherRepository: WeatherRepository
 ) : BaseViewModel() {
+
     @Inject
     lateinit var weatherApi: WeatherApi
+
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean>
         get() = _dataLoading
@@ -35,12 +37,20 @@ class WeatherViewModel(
     val cityName: LiveData<String>
         get() = _cityName
 
+   /* _maxTemp.value=0.0
+    _minTemp.value=0.0
+
+    _cityName.value="New Delhi"*/
+
    /* fun bind(weatherData: WeatherData){
         minTemp.value = weatherData.listWeather?.get(0)?.temp?.minTemp;
         maxTemp.value = weatherData.listWeather?.get(0)?.temp?.maxTemp;
     }
 */
 
+    public fun startLoad(){
+        loadWeatherData(true)
+    }
 
     /**
      * @param forceUpdate   Pass in true to refresh the data in the [TasksDataSource]
@@ -51,10 +61,9 @@ class WeatherViewModel(
             _dataLoading.setValue(true)
         }
 
-        weatherRepository.getWeatherData("22","22",10,weatherApi,object :WeatherDataSource.GetWeatherDataCallback{
+        weatherRepository.getWeatherData("28.644800","77.216721",2,weatherApi,object :WeatherDataSource.GetWeatherDataCallback{
 
             override fun onWeatherDataLoaded(weather: WeatherData) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
                 if (showLoadingUI) {
                     _dataLoading.value = false
@@ -64,7 +73,6 @@ class WeatherViewModel(
             }
 
             override fun onDataNotAvailable() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
 
