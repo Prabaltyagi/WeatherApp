@@ -15,18 +15,16 @@ import javax.inject.Singleton
 @Component(modules = [(NetModule::class)])
 interface ViewModelInjector {
 
-    @Component.Builder
-    interface Builder {
-
-       /* @BindsInstance
-        fun appModule(appModule: AppModule): Builder*/
-       @BindsInstance
-        fun netModule(netModule: NetModule): Builder
-
-
-        fun build(): ViewModelInjector
-    }
-
-
     fun inject(weatherViewModel: WeatherViewModel)
+
+   /* @Component.Builder
+    interface Builder {
+       *//* @BindsInstance
+        fun appModule(appModule: AppModule): Builder*//*
+        fun build(): ViewModelInjector
+        fun netModule(netModule: NetModule): Builder
+    }*/
+
+
+
 }
