@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface WeatherApi {
 
     @GET("forecast/daily")
-    fun dailyForecast(@Query("lat") lat : String,
-                      @Query("lan") long : String,
+    fun getDailyForecast(@Query("lat") lat : String,
+                      @Query("lan") longi : String,
                       @Query("cnt") dayCount : Int) : Call<WeatherData>
 }

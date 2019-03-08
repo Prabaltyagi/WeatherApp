@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.snackbar.Snackbar
 import com.prabal.weatherapp.R
+import com.prabal.weatherapp.databinding.ActivityWeatherDetailsBinding
 import com.prabal.weatherapp.utils.getViewModel
 import kotlinx.android.synthetic.main.activity_weather_details.*
 

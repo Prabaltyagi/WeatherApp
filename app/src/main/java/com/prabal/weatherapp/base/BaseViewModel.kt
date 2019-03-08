@@ -1,7 +1,6 @@
 package com.prabal.weatherapp.base
 
 import androidx.lifecycle.ViewModel
-import com.prabal.weatherapp.di.components.DaggerViewModelInjector
 import com.prabal.weatherapp.di.components.ViewModelInjector
 import com.prabal.weatherapp.di.modules.NetModule
 import com.prabal.weatherapp.views.weather_details.WeatherViewModel

@@ -1,15 +1,38 @@
 package com.prabal.weatherapp.model.data.remote
 
+import com.prabal.weatherapp.model.WeatherData
 import com.prabal.weatherapp.model.data.WeatherDataSource
+import com.prabal.weatherapp.network.WeatherApi
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 object WeatherRemoteDataSource: WeatherDataSource {
     override fun getWeatherData(
         lat: String,
         long: String,
         dayCount: Int,
+        weatherApi: WeatherApi,
         callback: WeatherDataSource.GetWeatherDataCallback
     ) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         //implement network call
+        var weatherReq: Call<WeatherData> =weatherApi.getDailyForecast("28.644800","77.216721",2)
+
+        weatherReq.enqueue(object:Callback<WeatherData>{
+            override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
+
+                response.body()?.let {
+                    callback.onWeatherDataLoaded(it)
+                }
+            }
+
+
+            override fun onFailure(call: Call<WeatherData>, t: Throwable) {
+                callback.onDataNotAvailable()
+                t.printStackTrace()
+            }
+        }
+
+        )
     }
 }

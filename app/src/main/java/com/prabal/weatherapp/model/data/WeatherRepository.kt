@@ -1,6 +1,7 @@
 package com.prabal.weatherapp.model.data
 
 import com.prabal.weatherapp.model.WeatherData
+import com.prabal.weatherapp.network.WeatherApi
 
 class WeatherRepository (
     val weatherRemoteDataSource: WeatherDataSource
@@ -11,10 +12,11 @@ class WeatherRepository (
         lat: String,
         long: String,
         dayCount: Int,
+        weatherApi: WeatherApi,
         callback: WeatherDataSource.GetWeatherDataCallback
     ) {
        //call from repo
-        weatherRemoteDataSource.getWeatherData(lat,long,dayCount,object : WeatherDataSource.GetWeatherDataCallback{
+        weatherRemoteDataSource.getWeatherData(lat,long,dayCount,weatherApi,object : WeatherDataSource.GetWeatherDataCallback{
             override fun onWeatherDataLoaded(weather: WeatherData) {
                 callback.onWeatherDataLoaded(weather)
             }

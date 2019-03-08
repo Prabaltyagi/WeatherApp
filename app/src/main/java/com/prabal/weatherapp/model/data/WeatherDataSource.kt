@@ -1,6 +1,7 @@
 package com.prabal.weatherapp.model.data
 
 import com.prabal.weatherapp.model.WeatherData
+import com.prabal.weatherapp.network.WeatherApi
 
 interface WeatherDataSource {
 
@@ -11,5 +12,5 @@ interface WeatherDataSource {
         fun onDataNotAvailable()
     }
 
-    fun getWeatherData(lat: String,long:String,dayCount:Int, callback: GetWeatherDataCallback)
+    fun getWeatherData(lat: String, long:String, dayCount:Int, weatherApi: WeatherApi ,  callback: GetWeatherDataCallback)
 }
