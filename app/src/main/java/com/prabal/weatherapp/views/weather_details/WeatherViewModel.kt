@@ -1,5 +1,6 @@
 package com.prabal.weatherapp.views.weather_details
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.prabal.weatherapp.base.BaseViewModel
@@ -16,6 +17,9 @@ class WeatherViewModel(
 
     @Inject
     lateinit var weatherApi: WeatherApi
+
+  //  val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+
 
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean>
@@ -37,25 +41,12 @@ class WeatherViewModel(
     val cityName: LiveData<String>
         get() = _cityName
 
-   /* _maxTemp.value=0.0
-    _minTemp.value=0.0
-
-    _cityName.value="New Delhi"*/
-
-   /* fun bind(weatherData: WeatherData){
-        minTemp.value = weatherData.listWeather?.get(0)?.temp?.minTemp;
-        maxTemp.value = weatherData.listWeather?.get(0)?.temp?.maxTemp;
-    }
-*/
 
     public fun startLoad(){
         loadWeatherData(true)
     }
 
-    /**
-     * @param forceUpdate   Pass in true to refresh the data in the [TasksDataSource]
-     * @param showLoadingUI Pass in true to display a loading icon in the UI
-     */
+
     private fun loadWeatherData( showLoadingUI: Boolean) {
         if (showLoadingUI) {
             _dataLoading.setValue(true)
@@ -86,6 +77,7 @@ class WeatherViewModel(
         _maxTemp.value = getCelsiusTemp(weatherData.value?.listWeather?.get(0)?.temp?.maxTemp ?: 0.0).toInt()
         _cityName.value=weatherData.value?.city?.cityName ?:"Empty city name"
     }
+    /*convert kelvin to celsius*/
     fun getCelsiusTemp(temp:Double):Double{
         return temp-273.15;
 

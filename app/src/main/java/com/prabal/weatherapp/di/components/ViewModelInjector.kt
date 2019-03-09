@@ -2,7 +2,6 @@ package com.prabal.weatherapp.di.components
 
 import com.prabal.weatherapp.di.modules.NetModule
 import com.prabal.weatherapp.views.weather_details.WeatherViewModel
-import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,7 +11,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [(NetModule::class)])
+@Component(modules = arrayOf((NetModule::class)))
 interface ViewModelInjector {
 
     fun inject(weatherViewModel: WeatherViewModel)
