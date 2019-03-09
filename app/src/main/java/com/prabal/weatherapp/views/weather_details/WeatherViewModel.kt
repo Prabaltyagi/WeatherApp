@@ -25,12 +25,12 @@ class WeatherViewModel(
     val weatherData: LiveData<WeatherData>
         get() = _weatherData
 
-    private val _minTemp = MutableLiveData<Double>()
-    val minTemp: LiveData<Double>
+    private val _minTemp = MutableLiveData<Int>()
+    val minTemp: LiveData<Int>
         get() = _minTemp
 
-    private val _maxTemp = MutableLiveData<Double>()
-    val maxTemp: LiveData<Double>
+    private val _maxTemp = MutableLiveData<Int>()
+    val maxTemp: LiveData<Int>
         get() = _maxTemp
 
     private val _cityName = MutableLiveData<String>()
@@ -80,8 +80,14 @@ class WeatherViewModel(
     }
 
     fun setup(){
-        _minTemp.value = weatherData.value?.listWeather?.get(0)?.temp?.minTemp;
-        _maxTemp.value = weatherData.value?.listWeather?.get(0)?.temp?.maxTemp;
-        _cityName.value=weatherData.value?.city?.cityName;
+
+
+        _minTemp.value =getCelsiusTemp( weatherData.value?.listWeather?.get(0)?.temp?.minTemp ?: 0.0).toInt()
+        _maxTemp.value = getCelsiusTemp(weatherData.value?.listWeather?.get(0)?.temp?.maxTemp ?: 0.0).toInt()
+        _cityName.value=weatherData.value?.city?.cityName ?:"Empty city name"
+    }
+    fun getCelsiusTemp(temp:Double):Double{
+        return temp-273.15;
+
     }
 }
