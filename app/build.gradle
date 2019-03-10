@@ -21,31 +21,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     dataBinding {
         enabled = true
     }
-
+    buildToolsVersion '28.0.3'
+    dexOptions {
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.google.android.material:material:1.0.0-beta01'
     implementation 'androidx.core:core-ktx:1.1.0-alpha04'
-    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     implementation 'com.google.android.gms:play-services-plus:16.0.0'
     kapt 'com.android.databinding:compiler:3.1.3'
 
-    //dagger
-    //implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
-    // implementation "com.google.dagger:dagger-android-support$rootProject.daggerVersion" // if you use the support libraries
-    //kapt "com.google.dagger:dagger-android-processor$rootProject.daggerVersion"
-    //kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-
-    // dependency injection
+    // dagger 2dependency injection
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
@@ -56,13 +56,19 @@ dependencies {
     implementation 'javax.inject:javax.inject:1'
 
     // LiveData & ViewModel
-    implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$archLifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2Version"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit2Version"
+
     //gson
     implementation "com.google.code.gson:gson:$rootProject.gson"
+
     //glide
     implementation "com.github.bumptech.glide:glide:$rootProject.glide"
 

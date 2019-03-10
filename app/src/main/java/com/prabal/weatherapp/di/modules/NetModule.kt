@@ -13,11 +13,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
 object NetModule {
-
-
     /*@Provides
     @Singleton
     internal fun provideHttpCache(application: Application): Cache {

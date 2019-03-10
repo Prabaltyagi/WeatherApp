@@ -1,13 +1,16 @@
 package com.prabal.weatherapp.views.weather_details
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.prabal.weatherapp.R
 import com.prabal.weatherapp.databinding.FragmentWeatherDetailsBinding
+import com.prabal.weatherapp.utils.setupSnackbar
 
 
 /**
@@ -23,7 +26,6 @@ class WeatherDetailsFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
     private lateinit var viewDataBinding: com.prabal.weatherapp.databinding.FragmentWeatherDetailsBinding
-    //private lateinit var viewModel: WeatherViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +53,21 @@ class WeatherDetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewDataBinding.viewModel?.let {
+            view?.setupSnackbar(this, it.snackbarMessage, Snackbar.LENGTH_LONG)
+        }
         viewDataBinding.setLifecycleOwner(this.viewLifecycleOwner)
+        setupFab()
+    }
+
+    private fun setupFab() {
+        activity?.findViewById<FloatingActionButton>(R.id.fab_new_location)?.let {
+            it.setOnClickListener {
+                //set  lat,long in the strinng
+               // viewDataBinding.viewModel?.addNewLocaion("28.457523,77.026344")
+                viewDataBinding.viewModel?.visibleAddLocation()
+            }
+        }
     }
 
     override fun onResume() {
@@ -71,6 +87,7 @@ class WeatherDetailsFragment : Fragment() {
         super.onDetach()
         listener = null
     }*/
+
 
 
 

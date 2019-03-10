@@ -9,6 +9,9 @@ import com.prabal.weatherapp.model.data.WeatherRepository
 import com.prabal.weatherapp.model.data.remote.WeatherRemoteDataSource
 import com.prabal.weatherapp.views.weather_details.WeatherViewModel
 
+/*
+* Factory to provide the viewmodel
+* */
 class ViewModelFactory private constructor(
         private val weatherRepository: WeatherRepository
     ) : ViewModelProvider.NewInstanceFactory() {
@@ -26,7 +29,6 @@ class ViewModelFactory private constructor(
 
         @SuppressLint("StaticFieldLeak")
         @Volatile private var INSTANCE: ViewModelFactory? = null
-
         fun getInstance() =
             INSTANCE ?: synchronized(ViewModelFactory::class.java) {
                 INSTANCE ?: ViewModelFactory(

@@ -28,7 +28,6 @@ object WeatherRemoteDataSource: WeatherDataSource {
                 }
             }
 
-
             override fun onFailure(call: Call<WeatherData>, t: Throwable) {
                 callback.onDataNotAvailable()
                 t.printStackTrace()

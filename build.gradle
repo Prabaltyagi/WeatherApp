@@ -28,7 +28,7 @@ task clean(type: Delete) {
 }
 ext {
 
-    archLifecycleVersion = '1.0.0'
+    archLifecycleVersion = '2.0.0'
     retrofit2Version='2.3.0'
     daggerVersion='2.20'
     gson='2.8.1'
