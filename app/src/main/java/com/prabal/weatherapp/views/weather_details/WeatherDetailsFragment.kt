@@ -14,7 +14,7 @@ import com.prabal.weatherapp.utils.setupSnackbar
 
 
 /**
- * A simple [Fragment] subclass.
+ * A  [Fragment] subclass.
  * Activities that contain this fragment must implement the
  * [WeatherDetailsFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
@@ -63,7 +63,8 @@ class WeatherDetailsFragment : Fragment() {
     private fun setupFab() {
         activity?.findViewById<FloatingActionButton>(R.id.fab_new_location)?.let {
             it.setOnClickListener {
-                //set  lat,long in the strinng
+                //set  latitude and longitude
+                //TODO for testing
                // viewDataBinding.viewModel?.addNewLocaion("28.457523,77.026344")
                 viewDataBinding.viewModel?.visibleAddLocation()
             }
@@ -74,21 +75,6 @@ class WeatherDetailsFragment : Fragment() {
         super.onResume()
         viewDataBinding.viewModel?.startLoad()
     }
-  /*  override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }*/
-
-
 
 
     /**
@@ -97,10 +83,6 @@ class WeatherDetailsFragment : Fragment() {
      * to the activity and potentially other fragments contained in that
      * activity.
      *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
      */
     interface OnFragmentInteractionListener {
         fun onFragmentInteraction(uri: Uri)

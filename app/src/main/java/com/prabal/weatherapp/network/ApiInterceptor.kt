@@ -5,7 +5,9 @@ import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Response
 
-
+/**
+ * ApiInterceptor class to  add the api keys to proceed for access
+ * */
 class ApiInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val url: HttpUrl = chain.request().url().newBuilder().addQueryParameter("appid", OPEN_WEATHER_APP_KEY)

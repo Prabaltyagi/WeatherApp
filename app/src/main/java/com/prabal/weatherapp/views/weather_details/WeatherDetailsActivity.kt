@@ -13,6 +13,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 import com.prabal.weatherapp.R
+import com.prabal.weatherapp.constants.DEFAULT_LATITUDE
+import com.prabal.weatherapp.constants.DEFAULT_LONGITUDE
 import com.prabal.weatherapp.constants.LATITUDE_PREF
 import com.prabal.weatherapp.constants.LONGITUDE_PREF
 import com.prabal.weatherapp.utils.Event
@@ -20,6 +22,10 @@ import com.prabal.weatherapp.utils.getViewModel
 import com.prabal.weatherapp.utils.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.activity_weather_detail.*
 
+
+/**
+ * Activity to show the weather details for the city
+ */
 class WeatherDetailsActivity : AppCompatActivity(),LifecycleOwner {
 
     private lateinit var binding: com.prabal.weatherapp.databinding.ActivityWeatherDetailBinding
@@ -68,30 +74,37 @@ class WeatherDetailsActivity : AppCompatActivity(),LifecycleOwner {
     override fun getLifecycle(): Lifecycle {
         return lifecycleRegistry
     }
+
+    /**
+     * save in preference if require
+     */
     private fun setPrefrenceLocation(){
         val sharedPref: SharedPreferences = this?.getPreferences(Context.MODE_PRIVATE) ?: return
         val lat = sharedPref.getString(LATITUDE_PREF, "")
         val lon = sharedPref.getString(LONGITUDE_PREF, "")
-        //set default
+        //set default value if you want
         if (lat.isBlank()) {
             with (sharedPref.edit()) {
-                putString(LATITUDE_PREF, "28.644800")
+                putString(LATITUDE_PREF,DEFAULT_LATITUDE)
                 commit()
             }
         }
         if (lon.isBlank()) {
             with (sharedPref.edit()) {
-                putString(LONGITUDE_PREF, "77.216721")
+                putString(LONGITUDE_PREF, DEFAULT_LONGITUDE)
                 commit()
             }
         }
     }
+    /**
+     * override in preference if require
+     */
     private fun setPrefrenceLocation(lat:String,lon:String){
         val sharedPref: SharedPreferences = this?.getPreferences(Context.MODE_PRIVATE) ?: return
         //set default
         if (lat.isBlank()) {
             with (sharedPref.edit()) {
-                putString(LATITUDE_PREF, "28.644800")
+                putString(LATITUDE_PREF, DEFAULT_LATITUDE)
                 commit()
             }
         }else{
@@ -103,7 +116,7 @@ class WeatherDetailsActivity : AppCompatActivity(),LifecycleOwner {
         }
         if (lon.isBlank()) {
             with (sharedPref.edit()) {
-                putString(LONGITUDE_PREF, "77.216721")
+                putString(LONGITUDE_PREF,DEFAULT_LONGITUDE)
                 commit()
             }
         }else{
@@ -116,17 +129,18 @@ class WeatherDetailsActivity : AppCompatActivity(),LifecycleOwner {
 
     /*Use to test only
     * */
+    //TODO would be remove after testing
      fun addNewLocation(location:String) {
          //recieve updated location
          Log.d("LatLong:","27,28")
          val separate1 = location.split(",".toRegex())
          var lat:String=separate1.get(0)
          var lon:String=separate1.get(1)
-
          setPrefrenceLocation(lat,lon)
         //can start new load
 
     }
+
     private fun setupViewFragment() {
         supportFragmentManager.findFragmentById(R.id.contentFrame)
             ?: replaceFragmentInActivity(WeatherDetailsFragment.newInstance(), R.id.contentFrame)

@@ -12,6 +12,9 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.prabal.weatherapp.constants.CITY_NAME
+import com.prabal.weatherapp.constants.DEFAULT_LATITUDE
+import com.prabal.weatherapp.constants.DEFAULT_LONGITUDE
 import com.prabal.weatherapp.views.weather_details.WeatherDetailsActivity
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -21,7 +24,7 @@ import org.junit.runner.RunWith
 /**
  * Instrumented test, which will execute on an Android device.
  *
- * See [testing documentation](http://d.android.com/tools/testing).
+ *
  */
 
 @RunWith(AndroidJUnit4::class)
@@ -60,11 +63,11 @@ class ExampleInstrumentedTest {
         onView(withId(R.id.editLatitude)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
         onView(withId(R.id.editLongitude)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
-        onView(withId(R.id.editLatitude)).perform(typeText("28.4595"))
-        onView(withId(R.id.editLongitude)).perform(typeText("77.0266"))
+        onView(withId(R.id.editLatitude)).perform(typeText(DEFAULT_LATITUDE))
+        onView(withId(R.id.editLongitude)).perform(typeText(DEFAULT_LONGITUDE))
         onView(withId(R.id.buttonGo)).perform(click())
 
-        onView(withId(R.id.city)).check(matches(withText("Gurgaon")))
+        onView(withId(R.id.city)).check(matches(withText(CITY_NAME)))
 
     }
 }

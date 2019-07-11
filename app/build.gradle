@@ -31,6 +31,7 @@ android {
     buildToolsVersion '28.0.3'
     testOptions {
         unitTests.includeAndroidResources = true
+        unitTests.returnDefaultValues = true
     }
 
 }
@@ -89,4 +90,8 @@ dependencies {
 
 // espresso
     androidTestImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
+
+    //mokito
+    testImplementation 'org.mockito:mockito-inline:2.8.47'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
 }

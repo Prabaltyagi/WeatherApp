@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.prabal.weatherapp.ViewModelFactory
 
-
+/**
+ * reusable operations
+ * */
 fun <T : ViewModel> AppCompatActivity.getViewModel(viewModelClass: Class<T>) =
     ViewModelProviders.of(this, ViewModelFactory.getInstance()).get(viewModelClass)
 

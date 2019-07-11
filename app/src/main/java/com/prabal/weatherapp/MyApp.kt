@@ -2,6 +2,9 @@ package com.prabal.weatherapp
 
 import android.app.Application
 
+/**
+ * Application class for app lifecycle
+ * */
 class MyApp :Application (){
 
     private lateinit var instance: MyApp
@@ -12,7 +15,9 @@ class MyApp :Application (){
     }
 
 
-
+/**
+ * If shortage of memory
+ * */
     override fun onTerminate() {
         super.onTerminate()
     }

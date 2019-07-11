@@ -11,7 +11,9 @@ import com.prabal.weatherapp.network.WeatherApi
 import com.prabal.weatherapp.utils.Event
 import javax.inject.Inject
 
-
+/**
+ * View model sub class to process weather api data
+ */
 class WeatherViewModel(
     private val weatherRepository: WeatherRepository
 ) : BaseViewModel() {
@@ -19,7 +21,6 @@ class WeatherViewModel(
     @Inject
     lateinit var weatherApi: WeatherApi
 
-  //  val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
   //oneway data binding
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean>
@@ -29,7 +30,7 @@ class WeatherViewModel(
         get() = _addingLocation
 
     private val _weatherData = MutableLiveData<WeatherData>()
-    val weatherData: LiveData<WeatherData>
+    private val weatherData: LiveData<WeatherData>
         get() = _weatherData
 
     private val _minTemp = MutableLiveData<Int>()
@@ -95,7 +96,7 @@ class WeatherViewModel(
 
     }
 
-    //on/off UI to add latitude and longitude of location
+    // on/off UI to add latitude and longitude of location
     fun visibleAddLocation(){
         if( _addingLocation.value?:false){
             _addingLocation.value=false
@@ -141,7 +142,6 @@ class WeatherViewModel(
         _minTemp.value =getCelsiusTemp( weatherData.value?.listWeather?.get(0)?.temp?.minTemp ?: 0.0).toInt()
         _maxTemp.value = getCelsiusTemp(weatherData.value?.listWeather?.get(0)?.temp?.maxTemp ?: 0.0).toInt()
         _cityName.value=weatherData.value?.city?.cityName ?:"Empty city name"
-
      //clear lat long at view
       /*  latitude.value=""
         longitude.value=""*/
